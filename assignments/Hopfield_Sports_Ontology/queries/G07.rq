@@ -1,0 +1,32 @@
+PREFIX hs: <urn:hopfield:sports:domain#>
+PREFIX hsa: <urn:hopfield:sports:application#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?competition ?name ?year
+             (GROUP_CONCAT(DISTINCT STR(?venueName); separator=", ") AS ?venues)
+             (GROUP_CONCAT(DISTINCT STR(?teamName); separator=", ") AS ?teams)
+             (GROUP_CONCAT(DISTINCT STR(?athleteName); separator=", ") AS ?athletes)
+             (COUNT(DISTINCT ?match) AS ?matchCount)
+      WHERE {
+        ?competition rdf:type/rdfs:subClassOf* hs:Competition ;
+                     rdfs:label ?name .
+        OPTIONAL { ?competition hs:competitionYear ?year }
+        OPTIONAL {
+          ?competition hs:hasRecordedVenue ?venue .
+          ?venue rdfs:label ?venueName .
+        }
+        OPTIONAL {
+          ?team hs:competedIn ?competition ;
+                rdfs:label ?teamName .
+        }
+        OPTIONAL {
+          ?participation hs:participationCompetition ?competition ;
+                         hs:participationAthlete ?athlete .
+          ?athlete rdfs:label ?athleteName .
+        }
+        OPTIONAL { ?match hs:inCompetition ?competition }
+      }
+      GROUP BY ?competition ?name ?year
+      ORDER BY ?year ?name

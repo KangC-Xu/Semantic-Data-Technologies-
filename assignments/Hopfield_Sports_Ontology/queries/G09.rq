@@ -1,0 +1,36 @@
+PREFIX hs: <urn:hopfield:sports:domain#>
+PREFIX hsa: <urn:hopfield:sports:application#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?team ?name ?founded ?leagueName ?members ?coaches ?titles
+      WHERE {
+        ?team rdf:type/rdfs:subClassOf* hs:SportsTeam ;
+              rdfs:label ?name .
+        OPTIONAL { ?team hs:establishYear ?founded }
+        OPTIONAL {
+          ?team hs:inLeague ?league .
+          ?league rdfs:label ?leagueName .
+        }
+        OPTIONAL {
+          SELECT ?team (COUNT(DISTINCT ?athlete) AS ?members)
+          WHERE {
+            ?membership a hs:TeamMembership ;
+                        hs:membershipTeam ?team ;
+                        hs:memberAthlete ?athlete .
+          }
+          GROUP BY ?team
+        }
+        OPTIONAL {
+          SELECT ?team (COUNT(DISTINCT ?coach) AS ?coaches)
+          WHERE {
+            ?assignment a hs:CoachingAssignment ;
+                        hs:assignmentTeam ?team ;
+                        hs:assignmentCoach ?coach .
+          }
+          GROUP BY ?team
+        }
+        OPTIONAL { ?team hs:fifaMensWorldCupTitles ?titles }
+      }
+      ORDER BY ?name

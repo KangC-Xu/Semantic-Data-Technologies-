@@ -1,0 +1,20 @@
+PREFIX hs: <urn:hopfield:sports:domain#>
+PREFIX hsa: <urn:hopfield:sports:application#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?teammate ?name ?team ?teamName
+      WHERE {
+        VALUES ?athlete { hs:LionelMessi }
+        ?athlete hs:hasTeammate ?teammate .
+        ?teammate rdfs:label ?name .
+        ?m1 a hs:TeamMembership ;
+            hs:memberAthlete ?athlete ;
+            hs:membershipTeam ?team .
+        ?m2 a hs:TeamMembership ;
+            hs:memberAthlete ?teammate ;
+            hs:membershipTeam ?team .
+        OPTIONAL { ?team rdfs:label ?teamName }
+      }
+      ORDER BY ?name

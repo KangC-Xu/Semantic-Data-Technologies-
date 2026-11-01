@@ -1,0 +1,13 @@
+PREFIX hs: <urn:hopfield:sports:domain#>
+PREFIX hsa: <urn:hopfield:sports:application#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?competition ?name
+      WHERE {
+        VALUES ?venue { hs:LusailStadium }
+        ?competition hs:hasRecordedVenue ?venue ;
+                     rdfs:label ?name .
+      }
+      ORDER BY ?name

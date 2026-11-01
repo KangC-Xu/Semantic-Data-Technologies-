@@ -10,32 +10,15 @@ On a new Windows x64 computer with Miniconda installed, double-click [environmen
 
 ## Hopfield sports ontology
 
-The [assignment folder](assignments/Hopfield_Sports_Ontology/) contains the English OWL ontology, 37 SPARQL queries, checked results, validation records and bilingual operation guides.
+The [Hopfield assignment](assignments/Hopfield_Sports_Ontology/) contains the group's v3.0 OWL ontology, the original question workbooks, 25 SPARQL queries and a script for generating RDFLib results, the group report and presentation, and Kangcheng Xu's individual work.
 
-| Resource | English | Simplified Chinese |
-| --- | --- | --- |
-| Quick operation guide | [README](assignments/Hopfield_Sports_Ontology/README.md) | [中文说明](assignments/Hopfield_Sports_Ontology/README.zh-CN.md) |
-| Illustrated demonstration and Q&A | [HTML guide](assignments/Hopfield_Sports_Ontology/Hopfield_Operation_Guide.en.html) | [中文图文指南](assignments/Hopfield_Sports_Ontology/Hopfield_Operation_Guide.zh-CN.html) |
+- [English assignment guide](assignments/Hopfield_Sports_Ontology/README.md) and [中文说明](assignments/Hopfield_Sports_Ontology/README.zh-CN.md)
+- [Personal Jupyter notebook](assignments/Hopfield_Sports_Ontology/notebooks/Sports_Ontology_Xu_2623912.ipynb)
+- [English four-slide presentation](assignments/Hopfield_Sports_Ontology/presentation/徐康成_体育本体_四页精简_英文版.pptx) and [Chinese presentation](assignments/Hopfield_Sports_Ontology/presentation/徐康成_体育本体_四页精简_中文版.pptx)
 
-1. Open [Hopfield_Sports_Ontology.owl](assignments/Hopfield_Sports_Ontology/Hopfield_Sports_Ontology.owl) in Protégé 5.6.9.
-2. Start HermiT to inspect consistency and inferred types.
-3. Run a complete `.rq` file from `queries/` in the SPARQL Query tab and compare the output with `results/`.
-4. Open either HTML guide locally in a browser for screenshots, model diagrams, five query demonstrations and assessment Q&A.
+Open [Hopfield_Sports_Ontology.owl](assignments/Hopfield_Sports_Ontology/Hopfield_Sports_Ontology.owl) in Protégé, or run the notebook with the Python (ARU) kernel. The assignment folder includes the NLTK resources needed by the notebook. The individual data is a teaching sample; generated CSV files are asserted-graph query outputs, not reasoner or SHACL validation reports.
 
-GitHub displays HTML source. To view the illustrated guide, clone or download the repository and open the HTML file locally, keeping its assignment folder together. No web server or CDN is required.
-
-## Contents and validation
-
-- 46 named classes, 45 object properties, 18 data properties and 222 named individuals.
-- 37 complete queries: Q01–Q22 and QA01–QA15, with CSV and JSON outputs.
-- HermiT consistency, inference and isolated negative-case records; zero OWL 2 DL profile violations.
-- Seven retained Protégé screenshots, including English/Chinese annotations and query results.
-
-The copied ontology, queries and result data are byte-identical to the checked assignment package. The validation record retains those checks; its ontology path is relative to the validation file for portability.
-
-The English OWL and queries are the coursework artifacts. Chinese guides and the optional Chinese UI plugin support study. The repository includes the [plugin installation instructions](plugins/chinese-ui-plugin/README.md) and [installable JAR](plugins/chinese-ui-plugin/dist/chinese-ui-1.0.1.jar). Close Protégé, copy the JAR into the `plugins/` directory of your own Protégé installation, then restart Protégé. The plugin is optional; its display switch does not change the English OWL, entity IRIs, query text or result column names.
-
-Data includes the final 26-player Argentina 2022 World Cup squad and the 16 teams in the Paris 2024 men's football competition. Other records are selected teaching examples; they do not form a complete sports database. See the guides for sources, date scope and explanations of empty query results.
+The group presentation still contains placeholder names and overlapping assignments. Check the final presentation with the group before submission.
 
 ## Windows environment
 

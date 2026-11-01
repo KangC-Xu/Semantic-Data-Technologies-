@@ -1,0 +1,26 @@
+PREFIX hs: <urn:hopfield:sports:domain#>
+PREFIX hsa: <urn:hopfield:sports:application#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?homeTeamName ?awayTeamName
+             ?homeScore ?awayScore
+             ?penaltyHomeScore ?penaltyAwayScore
+             ?resultType ?resultText
+      WHERE {
+        VALUES ?match { hs:WorldCupFinal2022 }
+        ?match hs:homeTeam ?homeTeam ;
+               hs:awayTeam ?awayTeam ;
+               hs:homeScore ?homeScore ;
+               hs:awayScore ?awayScore .
+        OPTIONAL { ?homeTeam rdfs:label ?homeTeamName }
+        OPTIONAL { ?awayTeam rdfs:label ?awayTeamName }
+        OPTIONAL { ?match hs:penaltyHomeScore ?penaltyHomeScore }
+        OPTIONAL { ?match hs:penaltyAwayScore ?penaltyAwayScore }
+        OPTIONAL {
+          ?match hs:hasResult ?result .
+          ?result hs:resultType ?resultType ;
+                  hs:resultText ?resultText .
+        }
+      }
